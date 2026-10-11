@@ -1,0 +1,2 @@
+# Redcell core runs on the Python standard library only.
+# Real-target adapters you add may need: openai / anthropic / langchain

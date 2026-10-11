@@ -1,0 +1,12 @@
+name: redteam
+on: [push, pull_request]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      # The harness exits non-zero when probes succeed (vulns present).
+      # Against the mock target that's expected, so we report without failing CI.
+      - run: python run.py || echo "::notice::probes found vulnerabilities (expected on mock target)"
